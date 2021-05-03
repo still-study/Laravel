@@ -8,10 +8,19 @@
     <title>Document</title>
 </head>
 <body>
+<h2>Категории новостей</h2>
+<ul>
+    @foreach($categories as $categoriesItem)
+        <li><a href="">{{ $categoriesItem->name }}</a></li>
+    @endforeach
+</ul>
+
+<h2>Новости</h2>
 <ul>
     @foreach($news as $newsItem)
         <li><a href="{{ route('news.show', ['news' => $newsItem]) }}">({{ $newsItem->category->name }}) {{ $newsItem->title }}</a></li>
     @endforeach
+
 </ul>
 </body>
 </html>
