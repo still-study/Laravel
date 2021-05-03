@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<h2>Категории новостей</h2>
+<ul>
+    @foreach($categories as $categoriesItem)
+        <li><a href="">{{ $categoriesItem->name }}</a></li>
+    @endforeach
+</ul>
+
+<h2>Новости</h2>
+<ul>
+    @foreach($news as $newsItem)
+        <li><a href="{{ route('news.show', ['news' => $newsItem]) }}">({{ $newsItem->category->name }}) {{ $newsItem->title }}</a></li>
+    @endforeach
+
+</ul>
+</body>
+</html>
