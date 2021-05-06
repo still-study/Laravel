@@ -15,7 +15,8 @@ class CategoryController extends Controller
 
     public function show(Category $category)
     {
+        $categories = $categories = Category::all();
         $news = $category->news()->get();
-        return view('categories.show', compact('news', 'category'));
+        return view('news.index', compact('news', 'categories'));
     }
 }
