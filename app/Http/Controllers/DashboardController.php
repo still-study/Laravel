@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class IndexController extends Controller
+class DashboardController extends Controller
 {
     private $date;
 
@@ -13,10 +13,9 @@ class IndexController extends Controller
         $this->date = date('l jS \of F Y h:i:s A');
     }
 
-
     public function index()
     {
-        return view('index', ['date' => $this->date]);
+        return view('dashboard', ['date' => $this->date]);
     }
 
     public function about()
@@ -24,4 +23,3 @@ class IndexController extends Controller
         return view('about');
     }
 }
-
