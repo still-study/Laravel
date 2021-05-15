@@ -18,6 +18,7 @@ class CreateNewsTable extends Migration
             $table->foreignId('category_id')->constrained();
             $table->string('title');
             $table->text('description');
+            $table->string('source');
             $table->timestamps();
         });
     }
