@@ -21,7 +21,6 @@ class FeedbackController extends Controller
 
     public function store(StoreFeedbackRequest $request)
     {
-
         Feedback::create($request->validated());
         return redirect()->route('feedback.index')->with('success', 'Отзыв добавлен');
     }
