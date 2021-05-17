@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use app\engine\Db;
 use App\Http\Requests\News\StoreNewsRequest;
 use App\Http\Requests\NewsShowRequest;
 use App\Models\Category;
@@ -37,4 +38,31 @@ class NewsController extends Controller
 
         return redirect()->route('news.index')->with('success', 'Новость добавлена');
     }
+
+    public function edit(News $news)
+    {
+        $newsAll = News::all();
+        $categories = Category::all();
+        return view('news.edit', compact('categories', 'news', 'newsAll'));
+    }
+
+    public function update(News $news, StoreNewsRequest $request)
+    {
+        //хотелось бы обновить как в методе Store, одной строкой...
+        //но что то не пошло((
+        //поэтому так
+        $news->title = $request->title;
+        $news->description = $request->description;
+        $news->category_id = $request->category_id;
+        $news->source = $request->source;
+        $news->save();
+        return redirect()->route('news.index')->with('success', 'Новость изменена');
+    }
+
+    public function delete(News $news)
+    {
+        $news->delete();
+        return redirect()->route('news.index')->with('success', 'Новость удалена');
+    }
 }
+
