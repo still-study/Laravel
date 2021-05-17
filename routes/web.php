@@ -36,6 +36,9 @@ Route::get('/news', [NewsController::class, 'index'])->name('news.index');
 Route::get('/news/create', [NewsController::class, 'create'])->name('news.create');
 Route::post('/news/create', [NewsController::class, 'store'])->name('news.store');
 
+Route::post('/news/update/{news}', [NewsController::class, 'update'])->name('news.update');
+Route::get('/news/edit/{news}', [NewsController::class, 'edit'])->name('news.edit');
+Route::delete('/news/delete/{news}', [NewsController::class, 'delete'])->name('news.delete');
 
 Route::get('/news/{news}', [NewsController::class, 'show'])->name('news.show');
 Route::get('/categories/{category}', [CategoryController::class, 'show'])->name('categories.show');
