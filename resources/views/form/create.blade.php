@@ -6,6 +6,9 @@
     </x-slot>
 
     <x-content-body>
+        <div class="my-8">
+            <x-auth-validation-errors :errors="$errors"/>
+        </div>
         <form method="POST" action="{{ route('form.store') }}" class="max-w-3xl">
             @csrf
 

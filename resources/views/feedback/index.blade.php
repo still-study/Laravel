@@ -8,6 +8,9 @@
 
     <x-content-body>
         <h2 class="mb-10 font-semibold text-xl text-gray-800 leading-tight">Create feedback</h2>
+        <div class="my-8">
+            <x-auth-validation-errors :errors="$errors"/>
+        </div>
         <form method="POST" action="{{ route('feedback.store') }}" class="max-w-3xl">
             @csrf
 

@@ -19,9 +19,8 @@ class NewsController extends Controller
 
     }
 
-    public function show(News $news)
+    public function show(News $news, Request $request)
     {
-
         return view('news.show', compact('news'));
     }
 
@@ -48,14 +47,7 @@ class NewsController extends Controller
 
     public function update(News $news, StoreNewsRequest $request)
     {
-        //хотелось бы обновить как в методе Store, одной строкой...
-        //но что то не пошло((
-        //поэтому так
-        $news->title = $request->title;
-        $news->description = $request->description;
-        $news->category_id = $request->category_id;
-        $news->source = $request->source;
-        $news->save();
+        $news->update($request->validated());
         return redirect()->route('news.index')->with('success', 'Новость изменена');
     }
 
