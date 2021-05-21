@@ -6,9 +6,11 @@
     </x-slot>
 
     <x-content-body>
+        <div class="my-8">
+            <x-auth-validation-errors :errors="$errors"/>
+        </div>
         <form method="POST" action="{{ route('news.store') }}" class="max-w-3xl">
         @csrf
-
 
             <div>
                 <x-label for="title" :value="__('Title')" />
