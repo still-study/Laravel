@@ -19,6 +19,5 @@ class DatabaseSeeder extends Seeder
         $categories = Category::factory(5)
             ->has(News::factory(10))
             ->create();
-
     }
 }

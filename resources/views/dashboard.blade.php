@@ -11,6 +11,7 @@
         </h2><p class="font-semibold text-sm text-gray-400 leading-tight">Today is: {{ $date }}</p>
     </x-content-body>
 
+
     <x-slot name="footer">
         <h2 class="font-semibold text-md text-gray-800 leading-tight">
             {{ __('Dashboard') }}
