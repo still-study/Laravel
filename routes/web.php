@@ -7,6 +7,7 @@ use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\FormController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\NewsController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -33,15 +34,23 @@ Route::post('/feedback',[FeedbackController::class, 'store'])->name('feedback.st
 Route::get('/form', [FormController::class, 'create'])->name('form.create');
 Route::post('/form', [FormController::class, 'store'])->name('form.store');
 
-Route::get('/news', [NewsController::class, 'index'])->name('news.index');
-Route::get('/news/create', [NewsController::class, 'create'])->name('news.create');
-Route::post('/news/create', [NewsController::class, 'store'])->name('news.store');
 
-Route::post('/news/update/{news}', [NewsController::class, 'update'])->name('news.update');
-Route::get('/news/edit/{news}', [NewsController::class, 'edit'])->name('news.edit');
-Route::delete('/news/delete/{news}', [NewsController::class, 'delete'])->name('news.delete');
+Route::prefix('/news')->group(function (){
+    Route::get('/', [NewsController::class, 'index'])->name('news.index');
+    Route::get('/create', [NewsController::class, 'create'])->middleware('role:admin')->name('news.create');
+    Route::post('/create', [NewsController::class, 'store'])->middleware('role:admin')->name('news.store');
 
-Route::get('/news/{news}', [NewsController::class, 'show'])->name('news.show');
+    Route::post('/update/{news}', [NewsController::class, 'update'])->middleware('role:admin')->name('news.update');
+    Route::get('/edit/{news}', [NewsController::class, 'edit'])->middleware('role:admin')->name('news.edit');
+    Route::delete('/delete/{news}', [NewsController::class, 'delete'])->middleware('role:admin')->name('news.delete');
+
+    Route::get('/{news}', [NewsController::class, 'show'])->name('news.show');
+});
+
 Route::get('/categories/{category}', [CategoryController::class, 'show'])->name('categories.show');
 
+Route::get('/user', [UserController::class, 'index'])->middleware('role:admin')->name('user.index');
+Route::get('/user/edit/{user}', [UserController::class, 'edit'])->middleware('role:admin')->name('user.edit');
+Route::post('/user/update/{user}', [UserController::class, 'update'])->middleware('role:admin')->name('user.update');
+Route::delete('/user/delete/{user}', [UserController::class, 'delete'])->middleware('role:admin')->name('user.delete');
 require __DIR__.'/auth.php';

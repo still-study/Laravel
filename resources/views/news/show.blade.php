@@ -9,14 +9,18 @@
         <h1 class="text-lg">{{ $news->title }}</h1>
         <p class="text-xs text-grey-500 mt-10">{{ $news->created_at->format('d.m.Y') }}</p>
         <p>{{ $news->description }}</p>
-        <a href="{{ route('news.edit', ['news' => $news]) }}">
-            <p class="mt-4 px-2 text-xs py-1 rounded-md bg-gray-200 text-gray-700 uppercase font-semibold">Edit news</p>
-        </a>
-        <form action="{{ route('news.delete', ['news' => $news]) }}" method="post">
-            <input class="mt-4 px-2 text-xs py-1 rounded-md bg-gray-200 text-gray-700 uppercase font-semibold cursor-pointer" type="submit" value="Delete news" />
-            <input type="hidden" name="_method" value="delete" />
-            <input type="hidden" name="_token" value="{{ csrf_token() }}">
-        </form>
+
+        @if(Auth::user()->role_id == 1 )
+            <a href="{{ route('news.edit', ['news' => $news]) }}">
+                <p class="mt-4 px-2 text-xs py-1 rounded-md bg-gray-200 text-gray-700 uppercase font-semibold">Edit news</p>
+            </a>
+            <form action="{{ route('news.delete', ['news' => $news]) }}" method="post">
+                <input class="mt-4 px-2 text-xs py-1 rounded-md bg-gray-200 text-gray-700 uppercase font-semibold cursor-pointer" type="submit" value="Delete news" />
+                <input type="hidden" name="_method" value="delete" />
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+            </form>
+        @endif
+
     </x-content-body>
 
     <x-slot name="footer">

@@ -3,7 +3,9 @@
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('News') }}
         </h2>
-        <a href="{{ route('news.create') }}">Create +</a>
+        @if(Auth::user()->role_id == 1 )
+            <a href="{{ route('news.create') }}">Create +</a>
+        @endif
     </x-slot>
 
     <x-content-body>

@@ -23,6 +23,11 @@
                     <x-nav-link :href="route('feedback.index')" :active="request()->routeIs('feedback.*')">
                         {{ __('Feedback\'s') }}
                     </x-nav-link>
+                    @if(Auth::user()->role_id == 1 )
+                        <x-nav-link :href="route('user.index')" :active="request()->routeIs('user.*')">
+                            {{ __('Edit Users') }}
+                        </x-nav-link>
+                    @endif
                 </div>
             </div>
 
