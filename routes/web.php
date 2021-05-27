@@ -8,6 +8,7 @@ use App\Http\Controllers\FormController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\XmlParserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -53,4 +54,7 @@ Route::get('/user', [UserController::class, 'index'])->middleware('role:admin')-
 Route::get('/user/edit/{user}', [UserController::class, 'edit'])->middleware('role:admin')->name('user.edit');
 Route::post('/user/update/{user}', [UserController::class, 'update'])->middleware('role:admin')->name('user.update');
 Route::delete('/user/delete/{user}', [UserController::class, 'delete'])->middleware('role:admin')->name('user.delete');
+
+Route::get('/parser', [XmlParserController::class, 'index']);
+
 require __DIR__.'/auth.php';

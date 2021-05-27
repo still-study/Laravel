@@ -29,7 +29,7 @@
                     <input value="" @if($user->role_id == null) checked @endif type="radio" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" name="role_id">
                     <span class="m-2 text-sm text-gray-600">{{ __('User') }}</span>
 
-                    <input value="1" @if($user->role_id == 1) checked @endif type="radio" selected class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" name="role_id">
+                    <input value="1" @if($user->role_id == 1) checked @endif type="radio" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" name="role_id">
                     <span class="m-2 text-sm text-gray-600">{{ __('Admin') }}</span>
 
                     <input value="2" @if($user->role_id == 2) checked @endif type="radio" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" name="role_id">
