@@ -54,5 +54,20 @@
                 </x-button>
             </div>
         </form>
+        <div class="mt-4">
+
+                <x-button class="ml-3">
+                    <a href="{{ route('login.vk.redirect') }}">{{ __('VK') }}</a>
+                </x-button>
+
+        </div>
+
+        <div class="mt-4">
+
+            <x-button class="ml-3">
+                <a href="{{ route('login.mail.redirect') }}">{{ __('@mail') }}</a>
+            </x-button>
+
+        </div>
     </x-auth-card>
 </x-guest-layout>

@@ -13,8 +13,13 @@ class NewsController extends Controller
 {
     public function index()
     {
-        $news = News::with('category')->get();
-        $categories = Category::all();
+        $getContent = new XmlParserController;
+        $news = $getContent->index()['news'];
+//        $news = News::with('category')->get();
+//        dd($news);
+//        $categories = Category::all();
+        $categories = $getContent->index();
+//        dd($categories);
         return view('news.index', compact('news', 'categories'));
 
     }

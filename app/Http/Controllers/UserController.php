@@ -21,7 +21,8 @@ class UserController extends Controller
 
     public function update(UpdateUserRequest $request, User $user)
     {
-        $user->role_id = $request->role_id;
+//        $user->role_id = $request->role_id;
+//        dd($request->validated());
         $user->update($request->validated());
         return redirect()->route('user.index')->with('success', 'Пользователь изменен');
     }

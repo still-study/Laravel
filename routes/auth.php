@@ -4,11 +4,15 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\ConfirmablePasswordController;
 use App\Http\Controllers\Auth\EmailVerificationNotificationController;
 use App\Http\Controllers\Auth\EmailVerificationPromptController;
+use App\Http\Controllers\Auth\MailruLoginController;
 use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
+use App\Http\Controllers\Auth\VkLoginController;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
+use Laravel\Socialite\Facades\Socialite;
 
 Route::get('/register', [RegisteredUserController::class, 'create'])
                 ->middleware('guest')
@@ -62,3 +66,18 @@ Route::post('/confirm-password', [ConfirmablePasswordController::class, 'store']
 Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
                 ->middleware('auth')
                 ->name('logout');
+//Auth - VK
+Route::get('/auth/redirect', function () {
+    return Socialite::driver('vkontakte')->redirect();
+})->name('login.vk.redirect');
+
+Route::get('/auth/login/vk/callback', [VkLoginController::class, 'login'])
+                ->name('login.vk.callback');
+
+//Auth - @mail
+Route::get('/auth/redirectm', function () {
+    return Socialite::driver('mailru')->redirect();
+})->name('login.mail.redirect');
+
+Route::get('/auth/login/mailru/callback', [MailruLoginController::class, 'login'])
+    ->name('login.mail.callback');
